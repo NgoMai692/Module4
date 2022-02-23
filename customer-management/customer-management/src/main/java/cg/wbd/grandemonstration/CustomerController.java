@@ -17,16 +17,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService ;
     @GetMapping("/customers")
-//    public String showList(HttpServletRequest request){
-//        List<Customer> customers = customerService.findAll();
-//        request.setAttribute("customers",customers);
-//        return "customers/list.jsp";
-//    }
-//    public String showList(Model model){
-//        List<Customer> customers = customerService.findAll();
-//        model.addAttribute("customers",customers);
-//        return "customers/list.jsp";
-//    }
     public ModelAndView showList(){
         ModelAndView modelAndView = new ModelAndView("customers/list.jsp");
         List<Customer> customers = customerService.findAll();
