@@ -94,9 +94,9 @@ public class ProductRepositoryImpl implements IProductRepository {
     public ArrayList<Product> findProductByKey(String name) {
 
         // SELECT * FROM product WHERE name = ?
-        String queryStr = "SELECT p FROM Product AS p WHERE p.name= :name";
+        String queryStr = "SELECT p FROM Product AS p WHERE p.name like :name";
         TypedQuery<Product> query = entityManager.createQuery(queryStr, Product.class);
-        query.setParameter("name", name);
+        query.setParameter("name", "%" + name +"%");
         return (ArrayList<Product>) query.getResultList();
     }
 }

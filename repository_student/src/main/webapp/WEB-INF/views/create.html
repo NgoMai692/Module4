@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/create}" th:object="${student}" method="post" >
+    <table>
+        <td><input th:field="*{name}">Name</td>
+        <td><input th:field="*{age}">Age</td>
+<!--        <td><input type="file" name="upImg"></td>-->
+        <td>
+            <select name="idClassRoom">
+                <option th:each="c:${classRooms}" th:text="${c.name}" th:value="${c.id}"></option>
+            </select></td>
+    </table>
+    <button type="submit">Create</button>
+</form>
+
+</body>
+</html>

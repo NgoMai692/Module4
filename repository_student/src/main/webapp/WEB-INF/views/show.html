@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Title</title>
+</head>
+<body>
+<button><a href="/create">Create new student</a></button>
+<table border="1">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Img</th>
+        <th>Class</th>
+    </tr>
+    <tr th:each="s,loop :${students}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.age}"></td>
+        <td><img th:src="${s.img}" width="300" height="250"></td>
+        <td th:text="${s.classRoom.name}"></td>
+    </tr>
+</table>
+</body>
+</html>
