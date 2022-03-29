@@ -1,9 +1,10 @@
 package com.codegym.service;
 
-import com.codegym.dao.IVoteDao;
 import com.codegym.model.Vote;
 import com.codegym.repository.IVoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class VoteService implements IVoteService {
     IVoteRepository voteRepository;
 
     @Override
-    public List<Vote> findAll() {
-        return voteRepository.findAll();
+    public Page<Vote> findAll(Pageable pageable) {
+        return voteRepository.findAll(pageable);
     }
 
     @Override
@@ -39,7 +40,7 @@ public class VoteService implements IVoteService {
     }
 
     @Override
-    public List<Vote> getTodayVotes() {
-        return voteRepository.getTodayVotes();
+    public Page<Vote> getTodayVotes(Pageable pageable) {
+        return voteRepository.getTodayVotes(pageable);
     }
 }

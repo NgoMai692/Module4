@@ -3,6 +3,8 @@ package com.codegym.controller;
 import com.codegym.model.Vote;
 import com.codegym.service.IVoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,11 +20,11 @@ public class VoteController {
     IVoteService voteService;
 
     @GetMapping("/home")
-    public ModelAndView viewHomePage() {
+    public ModelAndView viewHomePage(Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("vote", new Vote());
 
-        List<Vote> todayVotes = voteService.getTodayVotes();
+        Page<Vote> todayVotes = voteService.getTodayVotes(pageable);
         modelAndView.addObject("todayVotes", todayVotes);
         return modelAndView;
     }

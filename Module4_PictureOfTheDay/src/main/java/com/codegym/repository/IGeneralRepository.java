@@ -1,9 +1,13 @@
 package com.codegym.repository;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
 public interface IGeneralRepository<T> {
-    List<T> findAll();
+    Page<T> findAll(Pageable pageable);
 
     T findById(Long id);
 

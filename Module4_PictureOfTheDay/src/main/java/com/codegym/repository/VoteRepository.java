@@ -1,6 +1,8 @@
 package com.codegym.repository;
 
 import com.codegym.model.Vote;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -17,7 +19,7 @@ public class VoteRepository implements IVoteRepository{
     private EntityManager entityManager;
 
     @Override
-    public List<Vote> findAll() {
+    public Page<Vote> findAll(Pageable pageable) {
         TypedQuery<Vote> query = entityManager.createQuery("select v from Vote v", Vote.class);
         return query.getResultList();
     }
@@ -70,5 +72,10 @@ public class VoteRepository implements IVoteRepository{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDateTime now = LocalDateTime.now();
         return String.valueOf(now);
+    }
+
+    @Override
+    public Page<Vote> getTodayVotes(Pageable pageable) {
+        return null;
     }
 }
